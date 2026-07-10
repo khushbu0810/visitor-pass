@@ -1,123 +1,305 @@
-Society where you are living and visitors comes to visit you.
-
--> Resident Microservice
-1. register in app as resident of society (fill your details) --> signin basically
-2. enter visitors details that is going to visit you.
-3. generate qr code for visitor
-
-features of resident :
--> can modify own details
--> can modify visitor details
+# 🏢 VisitorPass System
 
 
+![Java](https://img.shields.io/badge/Java-21-orange?style=for-the-badge)
+![Spring
+Boot](https://img.shields.io/badge/Spring_Boot-4.x-6DB33F?style=for-the-badge&logo=springboot)
+![Angular](https://img.shields.io/badge/Angular-20-DD0031?style=for-the-badge&logo=angular)
+![Kafka](https://img.shields.io/badge/Apache_Kafka-4.2-231F20?style=for-the-badge&logo=apachekafka)
+![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker)
+![JWT](https://img.shields.io/badge/JWT-Authentication-blue?style=for-the-badge)
+![MySQL](https://img.shields.io/badge/TiDB-Cloud-4479A1?style=for-the-badge)
+
+**A complete Visitor Management System built with Spring Boot
+Microservices, Kafka, Docker, Angular and JWT Authentication.**
 
 
-1. delete all test cases from all microservices
-2. add pom in parent module - visitorPass , which contains all microservices names
-3. add this visitorPass in core module
-4. add a docker-compose.yml in root folder 
-5. if change something in code then reload all maven modules first before running docker compose file
-    as it can use cache otherwise
+------------------------------------------------------------------------
+
+# 📖 Overview
+
+VisitorPass is a society visitor management application where residents
+can register visitors and generate QR-based visitor passes. Guards
+verify visitors by scanning the QR code and manage visitor entry and
+exit.
+
+The project follows a **Microservices Architecture** with both:
+
+-   **Synchronous communication** using Spring RestClient
+-   **Asynchronous communication** using Apache Kafka
+
+------------------------------------------------------------------------
+
+# ✨ Features
+
+## Resident
+
+-   Register/Login using JWT
+-   Google Sign-In
+-   Complete resident profile
+-   Edit own profile
+-   Add visitors
+-   Update visitor details
+-   Generate QR Pass
+-   View generated passes
+
+## Visitor
+
+-   Store visitor information
+-   Track visitor status
+-   Linked with resident
+
+Statuses: `PENDING → APPROVED → ENTERED → EXITED`
+
+Additional statuses: - CANCELLED - EXPIRED
+
+## Pass
+
+-   QR Code generation (ZXing)
+-   Pass validation
+-   Delete pass when cancelled
+
+## Guard
+
+-   View today's visitors
+-   Scan QR Code
+-   Verify visitor
+-   Approve / Reject visitor
+-   Mark Entered
+-   Mark Exited
+
+------------------------------------------------------------------------
+
+# 🏗️ Microservice Architecture
+
+``` text
+                        Angular Frontend
+                               │
+      ┌────────────────────────┼────────────────────────┐
+      │                        │                        │
+      ▼                        ▼                        ▼
+Resident Service        Visitor Service         Guard Service
+                              │
+                     Publish Kafka Event
+                              │
+                              ▼
+                      Apache Kafka (Aiven)
+                              │
+                              ▼
+                        Pass Service
+                              │
+                        Generate QR
+```
+
+------------------------------------------------------------------------
+
+# 📂 Project Structure
+
+``` text
+VisitorPass
+│
+├── Core
+│   ├── Events
+│   ├── DTOs
+│   ├── Enums
+│   └── Shared Models
+│
+├── ResidentMicroservice
+├── VisitorMicroservice
+├── PassMicroservice
+├── GuardMicroservice
+├── Frontend (Angular)
+├── docker-compose.yml
+├── pom.xml
+└── README.md
+```
+
+------------------------------------------------------------------------
+
+# 🛠️ Technology Stack
+
+Layer              Technology
+  ------------------ ---------------------------------
+Backend            Java, Spring Boot
+Security           Spring Security, JWT
+Frontend           Angular
+Database           TiDB Cloud (MySQL Compatible)
+Messaging          Apache Kafka
+QR Code            ZXing
+Documentation      Swagger/OpenAPI
+Containerization   Docker, Docker Compose
+Cloud              Render, Docker Hub, Aiven Kafka
+
+------------------------------------------------------------------------
+
+# 🔐 Authentication
+
+-   JWT Authentication
+-   Google Login
+-   Role Based Authorization
+
+Flow:
+
+``` text
+Google Login
+      │
+      ▼
+Verify Google ID Token
+      │
+      ▼
+Generate JWT
+      │
+      ▼
+Complete Resident Profile
+```
+
+------------------------------------------------------------------------
+
+# 🔄 Application Flow
+
+## Resident
+
+``` text
+Register/Login
+      │
+      ▼
+Complete Profile
+      │
+      ▼
+Create Visitor
+      │
+      ▼
+Generate Pass
+      │
+      ▼
+QR Generated
+```
+
+## Guard
+
+``` text
+Today's Visitors
+      │
+      ▼
+   Scan QR
+      │
+      ▼
+   Approve
+      │
+      ▼
+   Entered
+      │
+      ▼
+   Exited
+```
+
+------------------------------------------------------------------------
+
+# 📡 Communication Between Services
+
+## REST (Synchronous)
+
+-   Pass Service → Visitor Service
+-   JWT Validation
+-   Visitor Verification
+
+## Kafka (Asynchronous)
+
+### Topic: `pass-created`
+
+Producer: - Visitor Service
+
+Consumer: - Pass Service
+
+Purpose: Generate QR Pass.
 
 
+------------------------------------------------------------------------
 
-Adding  authentication (Login / signup)
-for google login (Backend):
---> add google in pom first.
-1. add google config , which verifies idToken sent by angular
-2. we are using google id token 
+# 📨 Kafka Event Flow
 
+``` text
+Resident
+    │
+Create Visitor
+    │
+Generate Pass
+    │
+Visitor Service
+    │
+Publish PassCreatedEvent
+    │
+Apache Kafka
+    │
+Pass Service
+    │
+Generate QR Pass
+```
 
-when user loged in by google then he will see like --> add your details 
-and after adding details , can see own profile.
+------------------------------------------------------------------------
 
-------------------->
-done with resident and visitor service 
-resident-> create visitor 
-now generating a qr code for visitor as a pass
+# 🐳 Docker
 
+Each microservice contains its own Dockerfile.
 
---> for generating qrCode , use ZXing dependency
+``` text
+ResidentMicroservice/
+    Dockerfile
 
+VisitorMicroservice/
+    Dockerfile
 
-USing RestClient client for passing visitor to pass service
-while verifying pass , first read token from headdrs and verify valid visitor
+PassMicroservice/
+    Dockerfile
 
+GuardMicroservice/
+    Dockerfile
+```
 
+A common `docker-compose.yml` starts:
 
-<----------------------------SWAGGER PENDING------------------------------->
+-   Resident Service
+-   Visitor Service
+-   Pass Service
+-   Kafka
 
+------------------------------------------------------------------------
 
+# ☁️ Deployment
 
-KAFKA ======>>>>
-1. resident create the visitor --> publish pass created event
-2. adding a separate file as producer that defines send method, and service use this method
-   (we can use kafkaTemplate directly in service but as best practice we r creating separate file as visitorProducer)
-3. visitor --> publish pas screated event and pass service consume this event
-4. consumer consumes pass created event in handler folder using kafkaListener
+-   Docker Images → Docker Hub
+-   Backend → Render
+-   Database → TiDB Cloud
+-   Kafka → Aiven Kafka
 
-If using kafka , then don't need zookeeper 
+------------------------------------------------------------------------
 
-with zookeeper  
-principal 
-    |
-teacher
-    |
-student 
+# ☁️ Aiven Kafka Setup
 
+1.  Create Kafka Service
+2.  Create Kafka Topics
+3.  Download SSL Certificates or enable SASL
+4.  Configure Spring Boot
+5.  Deploy services
 
-without zookeeper 
-teacher
-    |
-student
-(NO NEED FOR PRINCIPAL THAT MANAGES OR LOOKS EVERYTHING IS WORKING FINE)
+------------------------------------------------------------------------
 
-provided common network : kafka-network to each service 
+# 📚 Swagger [IN - PROGRESS]
 
---> tag each image separately (docker tag passmicroservice:latest khushbu0810/passmicroservice:latest)
---> deploy each image separately on render
---> using aiven for kafka online on cloud
-(same we r using tidb for database)
+Swagger UI is enabled for every microservice.
 
+Example:
 
-docker compose id for local development/testing
-
-KAFKA AIVEN ----->
-1. first create topics in aiven that you r using in your project
-        -> manage streams -> topic
-2. Overview
-  ↓
-  Apache Kafka
-and download these (in client certificate):
-  CA Certificate
-  Access Certificate
-  Access Key
-  (Download:
-        ca.pem
-        service.cert
-        service.key)
-3.
-    1. Create the PKCS12 Keystore
-       openssl pkcs12 -export -in service.cert -inkey service.key -out kafka-keystore.p12 -name kafka
-       password : visitorpass123
-   2. Create the Truststore
-      keytool -import -alias CARoot -file ca.pem -keystore kafka-truststore.jks
-      password : visitorpass123
-   3. now folder have these files :
-          ca.pem
-          service.cert
-          service.key
-          kafka-keystore.p12
-          kafka-truststore.jks
-   4. copy these files in resources in spring app
-4. upload these 2 files in render in secrets
+``` text
+http://localhost:8080/swagger-ui/index.html
+```
 
 
+------------------------------------------------------------------------
 
-OPTION 2: instead of certificates(SSL) use avien SASL -> require username and password only
-        ----> first do mvn clean intall, again build the project so that these kafka files move to jar folder also.
-        ----> copying kafka folder form resource which contain ssl secret files into docker container
-            (COPY --from=builder /app/VisitorMicroservice/src/main/resources/kafka /app/kafka)
+# 👩‍💻 Author
 
+**Khushbu Ahlawat**
 
-REMoved test cases if failed building
+Built as a learning project to demonstrate Microservices Architecture
+using Spring Boot, Kafka, Docker, JWT, Angular and Cloud Deployment.
