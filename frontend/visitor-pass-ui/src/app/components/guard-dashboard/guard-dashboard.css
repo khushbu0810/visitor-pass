@@ -1,0 +1,953 @@
+:host {
+    display: block;
+    min-height: 100vh;
+    font-family: "Inter", sans-serif;
+}
+
+/* ==========================================
+   Background
+========================================== */
+
+.page-wrapper {
+
+    min-height: 100vh;
+
+    padding: 45px 24px 60px;
+
+    background:
+        radial-gradient(circle at top left,
+            rgba(163, 230, 53, .08),
+            transparent 30%),
+
+        radial-gradient(circle at bottom right,
+            rgba(132, 204, 22, .08),
+            transparent 35%),
+
+        linear-gradient(135deg,
+            #050505,
+            #101114,
+            #17191d);
+}
+
+/* ==========================================
+   Dashboard Header Card
+========================================== */
+
+.profile-card {
+
+    max-width: 1450px;
+
+    margin: auto;
+
+    margin-bottom: 30px;
+
+    padding: 35px;
+
+    border-radius: 24px;
+
+    background: rgba(22, 24, 28, .92);
+
+    border: 1px solid rgba(163, 230, 53, .15);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, .45);
+
+    transition: .3s;
+}
+
+.profile-card:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 28px 70px rgba(0, 0, 0, .55),
+        0 0 35px rgba(163, 230, 53, .08);
+}
+
+.profile-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.profile-header h2 {
+
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 2rem;
+
+    font-weight: 700;
+}
+
+.profile-header p {
+
+    margin-top: 10px;
+
+    color: #9ca3af;
+
+    line-height: 1.7;
+}
+
+/* ==========================================
+   Loading Card
+========================================== */
+
+.loading-card {
+
+    max-width: 1450px;
+
+    margin: auto;
+
+    padding: 40px;
+
+    border-radius: 22px;
+
+    text-align: center;
+
+    color: #d1d5db;
+
+    background: rgba(22, 24, 28, .92);
+
+    border: 1px solid rgba(163, 230, 53, .15);
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, .35);
+}
+
+/* ==========================================
+   Empty State
+========================================== */
+
+.empty-state {
+
+    text-align: center;
+
+    padding: 45px;
+}
+
+.empty-state h3 {
+
+    color: white;
+
+    margin-bottom: 12px;
+
+    font-size: 1.6rem;
+}
+
+.empty-state p {
+
+    color: #9ca3af;
+
+    line-height: 1.7;
+}
+
+/* ==========================================
+   Visitor Grid
+========================================== */
+
+.visitor-list {
+
+    max-width: 1450px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 24px;
+
+    align-items: start;
+}
+
+/* ==========================================
+   Visitor Card
+========================================== */
+
+.visitor-card {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    min-height: 340px;
+
+    padding: 22px;
+
+    border-radius: 22px;
+
+    background: rgba(22, 24, 28, .92);
+
+    border: 1px solid rgba(255, 255, 255, .05);
+
+    backdrop-filter: blur(16px);
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, .25);
+
+    transition: .3s;
+}
+
+.visitor-card:hover {
+
+    transform: translateY(-5px);
+
+    border-color: rgba(163, 230, 53, .35);
+
+    box-shadow:
+        0 20px 45px rgba(132, 204, 22, .10);
+}
+
+/* ==========================================
+   Card Header
+========================================== */
+
+.visitor-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+    margin-bottom: 18px;
+
+    padding-bottom: 16px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, .06);
+}
+
+.visitor-top h4 {
+
+    margin: 0;
+
+    color: white;
+
+    font-size: 1.15rem;
+
+    font-weight: 700;
+}
+
+.visitor-top small {
+
+    display: block;
+
+    margin-top: 8px;
+
+    color: #9ca3af;
+
+    font-size: .85rem;
+}
+
+/* ==========================================
+   Visitor Details
+========================================== */
+
+.visitor-details {
+
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+
+    margin-top: 8px;
+}
+
+.detail-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+    padding-bottom: 10px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, .05);
+}
+
+.detail-row:last-child {
+
+    border-bottom: none;
+
+    padding-bottom: 0;
+}
+
+.detail-label {
+
+    color: #84cc16;
+
+    font-size: .82rem;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+.detail-value {
+
+    color: #f3f4f6;
+
+    text-align: right;
+
+    max-width: 65%;
+
+    font-size: .92rem;
+
+    word-break: break-word;
+
+    line-height: 1.5;
+}
+
+/* ==========================================
+   Status Badge
+========================================== */
+
+.status-badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 8px 16px;
+
+    border-radius: 50px;
+
+    font-size: .78rem;
+
+    font-weight: 700;
+
+    letter-spacing: .8px;
+
+    text-transform: uppercase;
+
+    border: 1px solid;
+
+    transition: .3s;
+}
+
+/* Pending */
+
+.status-pending {
+
+    color: #fbbf24;
+
+    background: rgba(245, 158, 11, .12);
+
+    border-color: rgba(245, 158, 11, .25);
+}
+
+/* Approved */
+
+.status-approved {
+
+    color: #22c55e;
+
+    background: rgba(34, 197, 94, .12);
+
+    border-color: rgba(34, 197, 94, .25);
+}
+
+/* Entered */
+
+.status-entered {
+
+    color: #3b82f6;
+
+    background: rgba(59, 130, 246, .12);
+
+    border-color: rgba(59, 130, 246, .25);
+}
+
+/* Exited */
+
+.status-exited {
+
+    color: #d1d5db;
+
+    background: rgba(107, 114, 128, .15);
+
+    border-color: rgba(107, 114, 128, .25);
+}
+
+/* Cancelled */
+
+.status-cancelled {
+
+    color: #ef4444;
+
+    background: rgba(239, 68, 68, .12);
+
+    border-color: rgba(239, 68, 68, .25);
+}
+
+/* Expired */
+
+.status-expired {
+
+    color: #a855f7;
+
+    background: rgba(168, 85, 247, .12);
+
+    border-color: rgba(168, 85, 247, .25);
+}
+
+/* ==========================================
+   Action Section
+========================================== */
+
+.visitor-actions {
+
+    margin-top: 22px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid rgba(255, 255, 255, .06);
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+}
+
+/* ==========================================
+   Common Button
+========================================== */
+
+.btn {
+
+    flex: 1;
+
+    min-width: 150px;
+
+    padding: 13px 18px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    cursor: pointer;
+
+    font-size: .9rem;
+
+    font-weight: 700;
+
+    transition: .25s;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+.btn:hover:not(:disabled) {
+
+    transform: translateY(-2px);
+}
+
+.btn:disabled {
+
+    cursor: not-allowed;
+
+    opacity: .55;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+/* ==========================================
+   Approve
+========================================== */
+
+.btn-success {
+
+    color: white;
+
+    background: linear-gradient(135deg,
+            #22c55e,
+            #16a34a);
+
+    box-shadow:
+        0 12px 28px rgba(34, 197, 94, .25);
+}
+
+.btn-success:hover {
+
+    box-shadow:
+        0 18px 35px rgba(34, 197, 94, .35);
+}
+
+/* ==========================================
+   Reject
+========================================== */
+
+.btn-danger {
+
+    color: white;
+
+    background: linear-gradient(135deg,
+            #ef4444,
+            #dc2626);
+
+    box-shadow:
+        0 12px 28px rgba(239, 68, 68, .25);
+}
+
+.btn-danger:hover {
+
+    box-shadow:
+        0 18px 35px rgba(239, 68, 68, .35);
+}
+
+/* ==========================================
+   Mark Entered
+========================================== */
+
+.btn-primary {
+
+    color: white;
+
+    background: linear-gradient(135deg,
+            #3b82f6,
+            #2563eb);
+
+    box-shadow:
+        0 12px 28px rgba(59, 130, 246, .25);
+}
+
+.btn-primary:hover {
+
+    box-shadow:
+        0 18px 35px rgba(59, 130, 246, .35);
+}
+
+/* ==========================================
+   Mark Exited
+========================================== */
+
+.btn-warning {
+
+    color: #111827;
+
+    background: linear-gradient(135deg,
+            #facc15,
+            #f59e0b);
+
+    box-shadow:
+        0 12px 28px rgba(245, 158, 11, .30);
+}
+
+.btn-warning:hover {
+
+    box-shadow:
+        0 18px 35px rgba(245, 158, 11, .40);
+}
+
+/* ==========================================
+   Disabled Button
+========================================== */
+
+.btn-secondary {
+
+    color: #d1d5db;
+
+    background: #2b2f36;
+
+    border: 1px solid rgba(255, 255, 255, .08);
+}
+
+/* ==========================================
+   Nice Hover Glow
+========================================== */
+
+.btn-success:hover {
+
+    filter: brightness(1.05);
+}
+
+.btn-danger:hover {
+
+    filter: brightness(1.05);
+}
+
+.btn-primary:hover {
+
+    filter: brightness(1.05);
+}
+
+.btn-warning:hover {
+
+    filter: brightness(1.05);
+}
+
+.verified-card {
+    border: 2px solid #7cb342;
+    box-shadow: 0 0 15px rgba(124, 179, 66, .35);
+}
+
+/*==========================================
+Scan QR Button
+==========================================*/
+
+.btn-scan {
+
+    width: 100%;
+
+    padding: 15px 22px;
+
+    border: none;
+
+    border-radius: 16px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: .95rem;
+
+    font-weight: 700;
+
+    color: #ffffff;
+
+    background: linear-gradient(135deg,
+            #d406ca55,
+            #eb35ff);
+
+    box-shadow:
+        0 12px 28px rgba(6, 182, 212, .30);
+
+    transition: all .3s ease;
+
+    overflow: hidden;
+
+    position: relative;
+}
+
+.btn-scan:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 18px 40px rgba(208, 6, 212, 0.45);
+
+    filter: brightness(1.08);
+}
+
+.btn-scan:active {
+
+    transform: scale(.98);
+}
+
+/* Shine Effect */
+
+.btn-scan::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: -100%;
+
+    width: 100%;
+
+    height: 100%;
+
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, .25),
+            transparent);
+
+    transition: .6s;
+}
+
+.btn-scan:hover::before {
+
+    left: 100%;
+}
+
+.dashboard-summary {
+
+    max-width: 1450px;
+
+    margin: 0 auto 28px;
+
+    display: grid;
+
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 18px;
+}
+
+.summary-card {
+
+    padding: 22px;
+
+    border-radius: 20px;
+
+    background: rgba(22, 24, 28, .92);
+
+    border: 1px solid rgba(255, 255, 255, .06);
+
+    text-align: center;
+
+    transition: .3s;
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, .20);
+}
+
+.summary-card:hover {
+
+    transform: translateY(-4px);
+
+    border-color: #84cc16;
+}
+
+.summary-card h3 {
+
+    margin: 0;
+
+    font-size: 2rem;
+
+    color: #fff;
+
+    font-weight: 700;
+}
+
+.summary-card span {
+
+    margin-top: 8px;
+
+    display: block;
+
+    color: #9ca3af;
+
+    font-size: .85rem;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+.summary-card {
+
+    border-top: 4px solid #84cc16;
+}
+
+.summary-card.pending {
+
+    border-top-color: #f59e0b;
+}
+
+.summary-card.pending h3 {
+
+    color: #f59e0b;
+}
+
+.summary-card.approved {
+
+    border-top-color: #22c55e;
+}
+
+.summary-card.approved h3 {
+
+    color: #22c55e;
+}
+
+.summary-card.entered {
+
+    border-top-color: #3b82f6;
+}
+
+.summary-card.entered h3 {
+
+    color: #3b82f6;
+}
+
+.summary-card.exited {
+
+    border-top-color: #9ca3af;
+}
+
+.summary-card.exited h3 {
+
+    color: #d1d5db;
+}
+
+.toolbar {
+
+    max-width: 1450px;
+
+    margin: 0 auto 30px;
+
+    display: flex;
+
+    gap: 18px;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    flex-wrap: wrap;
+}
+
+.toolbar input {
+
+    flex: 1;
+
+    min-width: 320px;
+
+    padding: 14px 18px;
+
+    border-radius: 14px;
+
+    border: 1px solid #31343b;
+
+    background: #1a1d22;
+
+    color: #fff;
+
+    outline: none;
+
+    transition: .3s;
+}
+
+.toolbar input:focus {
+
+    border-color: #84cc16;
+
+    box-shadow:
+        0 0 0 4px rgba(132, 204, 22, .10);
+}
+
+.toolbar input::placeholder {
+
+    color: #6b7280;
+}
+
+.toolbar select {
+
+    min-width: 180px;
+
+    padding: 14px 18px;
+
+    border-radius: 14px;
+
+    border: 1px solid #31343b;
+
+    background: #1a1d22;
+
+    color: white;
+
+    cursor: pointer;
+
+    outline: none;
+
+    transition: .3s;
+}
+
+.toolbar select:focus {
+
+    border-color: #84cc16;
+}
+
+.visitor-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 18px 0;
+    flex: 1;
+}
+
+.info-chip {
+    padding: 8px 12px;
+    border-radius: 10px;
+    background: #202329;
+    color: #d1d5db;
+    font-size: .82rem;
+    border: 1px solid rgba(255, 255, 255, .05);
+}
+
+.purpose-box {
+    width: 80%;
+    margin-top: 6px;
+    padding: 10px;
+    border-radius: 12px;
+    background: rgba(132, 204, 22, .05);
+    color: #f3f4f6;
+    border-left: 5px solid #a7f422;
+    font-size: .9rem;
+    line-height: 1.5;
+}
+
+@media(max-width:1200px) {
+
+    .dashboard-summary {
+
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .visitor-list {
+
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media(max-width:768px) {
+
+    .dashboard-summary {
+
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .toolbar {
+
+        flex-direction: column;
+    }
+
+    .toolbar input,
+    .toolbar select {
+
+        width: 100%;
+    }
+
+    .visitor-list {
+
+        grid-template-columns: 1fr;
+    }
+
+}

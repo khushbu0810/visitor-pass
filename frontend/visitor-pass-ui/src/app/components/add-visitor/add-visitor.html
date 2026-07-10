@@ -1,0 +1,90 @@
+<div class="page-wrapper">
+
+    <h2 class="page-title">Add Visitor</h2>
+
+    <div class="form-card">
+
+        <div class="form-card-body">
+
+            <form class="visitor-form" [formGroup]="visitorForm" (ngSubmit)="addVisitor()" novalidate>
+
+                <div class="section-title">
+                    Visitor Details
+                </div>
+
+                <div class="field">
+                    <label>Visitor Name</label>
+                    <input type="text" formControlName="visitorName" placeholder="Enter visitor name">
+                </div>
+
+                <div class="field">
+                    <label>Phone Number</label>
+                    <input type="text" formControlName="visitorPhone" maxlength="10"
+                        placeholder="10-digit mobile number">
+                </div>
+
+                <div class="field">
+                    <label>Email Address</label>
+                    <input type="email" formControlName="visitorEmail" placeholder="visitor@email.com">
+                </div>
+
+                <div class="field">
+                    <label>Purpose of Visit</label>
+                    <textarea formControlName="purpose" rows="3" placeholder="Reason for visiting"></textarea>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <div class="field-row">
+
+                    <div class="field">
+                        <label>Visit Date</label>
+                        <input type="date" formControlName="visitDate">
+                    </div>
+
+                    <div class="field">
+
+                        <label>
+                            Visitor Status
+                            <span class="badge">auto</span>
+                        </label>
+
+                        <div class="status-display">
+
+                            <span class="status-dot"></span>
+
+                            <span class="status-text">
+
+                                <input type="text" formControlName="status" readonly>
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="form-actions">
+
+                    <button type="button" class="btn-cancel" routerLink="/resident-profile">
+
+                        Cancel
+
+                    </button>
+
+                    <button type="submit" class="btn-submit" [disabled]="isSubmitting">
+
+                        {{ isSubmitting ? 'Adding...' : 'Add Visitor' }}
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

@@ -1,0 +1,212 @@
+<div class="page-wrapper">
+
+    @if(isLoading){
+
+    <div class="loading-card">
+        Loading Resident Profile...
+    </div>
+
+    }
+
+    @if(!isLoading){
+
+    <div class="profile-card resident-profile">
+
+        <div class="profile-header">
+
+            <div>
+
+                <h2>Resident Profile</h2>
+
+                <p>
+                    Manage your personal information and visitors.
+                </p>
+
+            </div>
+
+            <button class="btn-submit" (click)="editProfile()">
+
+                Edit Profile
+
+            </button>
+
+        </div>
+
+        <div class="profile-grid">
+
+            <div class="profile-item">
+                <label>Full Name</label>
+                <span>{{resident?.fullName}}</span>
+            </div>
+
+            <div class="profile-item">
+                <label>Email Address</label>
+                <span>{{resident?.email}}</span>
+            </div>
+
+            <div class="profile-item">
+                <label>Phone Number</label>
+                <span>{{resident?.phoneNumber}}</span>
+            </div>
+
+            <div class="profile-item">
+                <label>Tower</label>
+                <span>{{resident?.tower}}</span>
+            </div>
+
+            <div class="profile-item">
+                <label>Flat Number</label>
+                <span>{{resident?.flatNumber}}</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="action-card">
+
+        <h3>Quick Actions</h3>
+
+        <p>
+            Manage visitors and access your visitor history.
+        </p>
+
+        <div class="resident-actions">
+
+            <button class="btn-submit action-btn" (click)="addVisitor()">
+
+                Add Visitor
+
+            </button>
+
+            <button class="btn-secondary action-btn" (click)="showVisitors=true;viewAllPastVisitors()">
+
+                Visitor History
+
+            </button>
+
+        </div>
+
+    </div>
+
+    }
+
+    @if(showVisitors){
+
+    <div class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div>
+                    <h3>Visitor History</h3>
+                    <p>
+                        Previous visitors to your residence.
+                    </p>
+                </div>
+                <button class="close-btn" (click)="showVisitors=false">
+                    ✕
+                </button>
+            </div>
+            @if(visitors.length===0){
+            <div class="empty-state">
+                No visitors found.
+            </div>
+            }
+            @else{
+            <div class="table-wrapper">
+                <div class="visitor-list">
+
+                    @for(visitor of visitors; track visitor.id){
+
+                    <div class="visitor-card">
+
+                        <div class="visitor-top">
+
+                            <div>
+
+                                <h4>{{visitor.visitorName}}</h4>
+
+                                <small>
+                                    {{visitor.visitDate}}
+                                </small>
+
+                            </div>
+
+                            <span class="status-badge">
+                                {{visitor.status}}
+                            </span>
+
+                        </div>
+
+                        <div class="visitor-details">
+
+                            <div class="detail-item">
+
+                                <label>Phone</label>
+
+                                <span>{{visitor.visitorPhone}}</span>
+
+                            </div>
+
+                            <div class="detail-item">
+
+                                <label>Email</label>
+
+                                <span>{{visitor.visitorEmail}}</span>
+
+                            </div>
+
+                            <div class="detail-item full-width">
+
+                                <label>Purpose</label>
+
+                                <span>{{visitor.purpose}}</span>
+
+                            </div>
+
+                        </div>
+                        <div class="visitor-actions">
+
+                            <button class="btn-submit action-small" (click)="generatePass(visitor.id!)"
+                                [disabled]="visitor.hasPass">
+
+                                {{ visitor.hasPass ? 'QR Generated' : 'Generate QR' }}
+
+                            </button>
+
+                            <button class="btn-secondary action-small" (click)="viewPass(visitor.id!)"
+                                [disabled]="!visitor.hasPass">
+
+                                View Pass
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    }
+
+                </div>
+
+
+            </div>
+
+            }
+
+            <div class="modal-footer">
+
+                <button class="btn-secondary" (click)="showVisitors=false">
+
+                    Back to Profile
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    }
+
+</div>

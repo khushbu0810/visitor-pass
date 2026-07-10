@@ -1,0 +1,555 @@
+:host {
+    display: block;
+    min-height: 100vh;
+    font-family: "Inter", sans-serif;
+}
+
+/* =====================================================
+   Background
+===================================================== */
+
+.page-wrapper {
+
+    min-height: 100vh;
+
+    padding: 45px 20px 60px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    background:
+        radial-gradient(circle at top left,
+            rgba(163, 230, 53, .08),
+            transparent 30%),
+
+        radial-gradient(circle at bottom right,
+            rgba(132, 204, 22, .08),
+            transparent 35%),
+
+        linear-gradient(135deg,
+            #050505,
+            #101114,
+            #17191d);
+}
+
+/* =====================================================
+   Loading Card
+===================================================== */
+
+.loading-card {
+
+    width: 100%;
+    max-width: 900px;
+
+    padding: 40px;
+
+    text-align: center;
+
+    color: #d1d5db;
+
+    font-size: 1.05rem;
+
+    border-radius: 22px;
+
+    background: rgba(22, 24, 28, .92);
+
+    border: 1px solid rgba(163, 230, 53, .15);
+
+    backdrop-filter: blur(16px);
+
+    box-shadow:
+        0 20px 55px rgba(0, 0, 0, .45);
+}
+
+/* =====================================================
+   Main Card
+===================================================== */
+
+.profile-card {
+
+    width: 100%;
+    max-width: 1100px;
+
+    padding: 35px;
+
+    border-radius: 24px;
+
+    background: rgba(22, 24, 28, .92);
+
+    border: 1px solid rgba(163, 230, 53, .15);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, .55);
+
+    transition: .3s;
+
+    margin-bottom: 30px;
+}
+
+.profile-card:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 35px 80px rgba(0, 0, 0, .60),
+        0 0 35px rgba(163, 230, 53, .08);
+}
+
+/* =====================================================
+   Header
+===================================================== */
+
+.profile-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 35px;
+
+    padding-bottom: 22px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, .06);
+}
+
+.profile-header h2 {
+
+    margin: 0;
+
+    color: #fff;
+
+    font-size: 2rem;
+
+    font-weight: 700;
+}
+
+.profile-header p {
+
+    margin-top: 8px;
+
+    color: #9ca3af;
+
+    line-height: 1.6;
+}
+
+/* =====================================================
+   Status Badge
+===================================================== */
+
+.status-badge {
+
+    padding: 10px 18px;
+
+    border-radius: 999px;
+
+    background: rgba(132, 204, 22, .15);
+
+    color: #a3e635;
+
+    border: 1px solid rgba(132, 204, 22, .25);
+
+    font-size: .85rem;
+
+    font-weight: 700;
+
+    letter-spacing: .5px;
+
+    text-transform: uppercase;
+}
+
+/* =====================================================
+   Information Grid
+===================================================== */
+
+.profile-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
+    gap: 22px;
+}
+
+.profile-item {
+
+    padding: 22px;
+
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, .03);
+
+    border: 1px solid rgba(255, 255, 255, .05);
+
+    transition: .25s;
+}
+
+.profile-item:hover {
+
+    transform: translateY(-3px);
+
+    border-color: #84cc16;
+
+    background: rgba(163, 230, 53, .04);
+}
+
+.profile-item label {
+
+    display: block;
+
+    color: #84cc16;
+
+    margin-bottom: 10px;
+
+    font-size: .78rem;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+.profile-item span {
+
+    color: #f3f4f6;
+
+    font-size: .96rem;
+
+    word-break: break-word;
+}
+
+/* =====================================================
+   QR Section
+===================================================== */
+
+.action-card {
+
+    width: 100%;
+    max-width: 1100px;
+
+    padding: 40px;
+
+    border-radius: 24px;
+
+    background: rgba(22, 24, 28, .92);
+
+    border: 1px solid rgba(163, 230, 53, .15);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, .45);
+
+    text-align: center;
+}
+
+.action-card h3 {
+
+    color: #fff;
+
+    font-size: 1.7rem;
+
+    margin-bottom: 10px;
+}
+
+.action-card p {
+
+    color: #9ca3af;
+
+    margin-bottom: 35px;
+}
+
+/* =====================================================
+   QR Wrapper
+===================================================== */
+
+.qr-wrapper {
+
+    width: 280px;
+
+    height: 280px;
+
+    margin: 0 auto 35px;
+
+    background: #fff;
+
+    border-radius: 22px;
+
+    padding: 18px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, .40);
+}
+
+.qr-image {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: contain;
+}
+
+.qr-placeholder {
+
+    color: #777;
+
+    font-weight: 600;
+}
+
+/* =====================================================
+   Token Card
+===================================================== */
+
+.token-card {
+
+    max-width: 700px;
+
+    margin: 0 auto 35px;
+
+    padding: 24px;
+
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, .04);
+
+    border: 1px solid rgba(163, 230, 53, .12);
+}
+
+.token-card label {
+
+    display: block;
+
+    color: #84cc16;
+
+    margin-bottom: 12px;
+
+    font-size: .82rem;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+.token-card span {
+
+    color: #fff;
+
+    font-size: .92rem;
+
+    word-break: break-all;
+
+    font-family: monospace;
+
+    line-height: 1.7;
+}
+
+/* =====================================================
+   Buttons
+===================================================== */
+
+.resident-actions {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 18px;
+
+    flex-wrap: wrap;
+}
+
+.action-btn {
+
+    min-width: 190px;
+}
+
+.btn-submit {
+
+    padding: 15px 28px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: linear-gradient(135deg,
+            #bef264,
+            #84cc16);
+
+    color: #111;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .25s;
+
+    box-shadow:
+        0 12px 30px rgba(132, 204, 22, .30);
+}
+
+.btn-submit:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 18px 35px rgba(132, 204, 22, .45);
+}
+
+.btn-secondary {
+
+    padding: 15px 28px;
+
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, .03);
+
+    border: 1px solid rgba(255, 255, 255, .10);
+
+    color: #d1d5db;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+    transition: .25s;
+}
+
+.btn-secondary:hover {
+
+    background: rgba(163, 230, 53, .08);
+
+    border-color: #84cc16;
+
+    color: #a3e635;
+}
+
+.btn-danger {
+
+    padding: 15px 28px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: linear-gradient(135deg,
+            #ef4444,
+            #dc2626);
+
+    color: #fff;
+
+    cursor: pointer;
+
+    font-weight: 700;
+
+    transition: .25s;
+}
+
+.btn-danger:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 18px 35px rgba(239, 68, 68, .35);
+}
+
+.back-section {
+
+    margin-top: 28px;
+
+    display: flex;
+
+    justify-content: center;
+}
+
+/* =====================================================
+   Empty State
+===================================================== */
+
+.empty-state {
+
+    text-align: center;
+
+    padding: 40px 20px;
+}
+
+.empty-state h2 {
+
+    color: #fff;
+
+    margin-bottom: 15px;
+}
+
+.empty-state p {
+
+    color: #9ca3af;
+
+    margin-bottom: 30px;
+
+    line-height: 1.7;
+}
+
+/* =====================================================
+   Responsive
+===================================================== */
+
+@media(max-width:768px) {
+
+    .profile-header {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+    .profile-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .action-card {
+
+        padding: 30px 20px;
+    }
+
+    .qr-wrapper {
+
+        width: 220px;
+
+        height: 220px;
+    }
+
+    .resident-actions {
+
+        flex-direction: column;
+    }
+
+    .action-btn,
+    .btn-secondary {
+
+        width: 100%;
+    }
+
+    .back-section {
+
+        margin-top: 18px;
+    }
+
+}

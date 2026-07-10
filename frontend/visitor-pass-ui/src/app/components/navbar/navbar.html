@@ -1,0 +1,37 @@
+<nav class="navbar">
+
+    <div class="logo" (click)="goHome()">
+
+        <div class="logo-icon">
+            🛡️
+        </div>
+
+        <div class="logo-text">
+
+            <h3>Visitor Pass</h3>
+
+            <small>Residential Security</small>
+
+        </div>
+
+    </div>
+
+    <div class="nav-actions">
+
+        <button class="nav-btn" (click)="goHome()">
+
+            {{ authService.getAuthenticatedUserRole() === 'GUARD'
+            ? 'Dashboard'
+            : 'My Profile' }}
+
+        </button>
+
+        <button class="logout-btn" (click)="logout()">
+
+            Logout
+
+        </button>
+
+    </div>
+
+</nav>

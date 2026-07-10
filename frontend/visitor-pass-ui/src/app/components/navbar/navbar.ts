@@ -1,0 +1,31 @@
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth-service';
+
+@Component({
+  selector: 'app-navbar',
+  imports: [],
+  templateUrl: './navbar.html',
+  styleUrl: './navbar.css',
+})
+export class Navbar {
+  constructor(
+    public authService: AuthService,
+    private router: Router
+  ) { }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
+
+  goHome() {
+    const role = this.authService.getAuthenticatedUserRole();
+
+    if (role === 'GUARD') {
+      this.router.navigate(['/guard-dashboard']);
+    } else {
+      this.router.navigate(['/resident-profile']);
+    }
+  }
+}

@@ -1,0 +1,252 @@
+<div class="page-wrapper">
+
+    <div class="profile-card">
+
+        <div class="profile-header">
+
+            <div>
+                <h2>Guard Dashboard</h2>
+                <p>
+                    Manage today's visitors and update their entry status.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="dashboard-summary">
+
+        <div class="summary-card">
+            <h3>{{totalVisitors}}</h3>
+            <span>Total</span>
+        </div>
+
+        <div class="summary-card pending">
+            <h3>{{pendingCount}}</h3>
+            <span>Pending</span>
+        </div>
+
+        <div class="summary-card approved">
+            <h3>{{approvedCount}}</h3>
+            <span>Approved</span>
+        </div>
+
+        <div class="summary-card entered">
+            <h3>{{enteredCount}}</h3>
+            <span>Entered</span>
+        </div>
+
+        <div class="summary-card exited">
+            <h3>{{exitedCount}}</h3>
+            <span>Exited</span>
+        </div>
+
+    </div>
+    <div class="toolbar">
+
+        <input type="text" placeholder="Search by name or phone..." (input)="onSearch($event)">
+
+        <select (change)="onStatusChange($event)">
+
+            <option value="ALL">All</option>
+            <option value="PENDING">Pending</option>
+            <option value="APPROVED">Approved</option>
+            <option value="ENTERED">Entered</option>
+            <option value="EXITED">Exited</option>
+            <option value="CANCELLED">Cancelled</option>
+            <option value="EXPIRED">Expired</option>
+
+        </select>
+
+    </div>
+    @if(isLoading){
+
+    <div class="loading-card">
+        Loading Today's Visitors...
+    </div>
+
+    }
+
+    @if(!isLoading){
+
+    @if(filteredVisitors.length===0){
+
+    <div class="profile-card">
+
+        <div class="empty-state">
+
+            <h3>No Visitors Today</h3>
+
+            <p>
+                No visitors are scheduled for today.
+            </p>
+
+        </div>
+
+    </div>
+
+    }
+
+    @else{
+
+    <div class="visitor-list">
+
+        @for(visitor of filteredVisitors; track visitor.id){
+
+        <div class="visitor-card">
+
+            <!-- ================= Header ================= -->
+
+            <div class="visitor-top">
+
+                <div>
+
+                    <h4>{{visitor.visitorName}}</h4>
+
+                    <small>
+                        📅 {{visitor.visitDate}}
+                    </small>
+
+                </div>
+
+                <span class="status-badge" [class.status-pending]="visitor.status==='PENDING'"
+                    [class.status-approved]="visitor.status==='APPROVED'"
+                    [class.status-entered]="visitor.status==='ENTERED'"
+                    [class.status-exited]="visitor.status==='EXITED'"
+                    [class.status-cancelled]="visitor.status==='CANCELLED'"
+                    [class.status-expired]="visitor.status==='EXPIRED'">
+
+                    {{visitor.status}}
+
+                </span>
+
+            </div>
+
+            <!-- ================= Details ================= -->
+
+            <div class="visitor-details">
+
+                <div class="info-chip">
+                    📞 {{visitor.visitorPhone}}
+                </div>
+
+                <div class="info-chip">
+                    ✉ {{visitor.visitorEmail}}
+                </div>
+
+                <div class="purpose-box">
+
+                    {{visitor.purpose}}
+
+                </div>
+
+            </div>
+
+            <!-- ================= Actions ================= -->
+
+            <div class="visitor-actions">
+
+                <!-- Pending -->
+
+                @if(visitor.status === 'PENDING'){
+
+                @if(visitor.id === verifiedVisitorId){
+
+                <button class="btn btn-success" (click)="approveVisitor(visitor)">
+
+                    ✓ Approve
+
+                </button>
+
+                <button class="btn btn-danger" (click)="cancelVisitor(visitor)">
+
+                    ✕ Reject
+
+                </button>
+
+                }
+
+                @else{
+
+                <button class="btn btn-scan" [routerLink]="['/scan-qr']" [queryParams]="{ visitorId: visitor.id }">
+                    📷 Scan QR to Verify
+                </button>
+
+                }
+
+                }
+
+                <!-- Approved -->
+
+                @else if(visitor.status === 'APPROVED'){
+
+                <button class="btn btn-primary" (click)="markEntered(visitor)">
+
+                    🚪 Mark Entered
+
+                </button>
+
+                }
+
+                <!-- Entered -->
+
+                @else if(visitor.status === 'ENTERED'){
+
+                <button class="btn btn-warning" (click)="markExited(visitor)">
+
+                    🚶 Mark Exited
+
+                </button>
+
+                }
+
+                <!-- Exited -->
+
+                @else if(visitor.status === 'EXITED'){
+
+                <button class="btn btn-secondary" disabled>
+
+                    ✔ Visitor Exited
+
+                </button>
+
+                }
+
+                <!-- Cancelled -->
+
+                @else if(visitor.status === 'CANCELLED'){
+
+                <button class="btn btn-danger" disabled>
+
+                    ✖ Visitor Cancelled
+
+                </button>
+
+                }
+
+                <!-- Expired -->
+
+                @else if(visitor.status === 'EXPIRED'){
+
+                <button class="btn btn-secondary" disabled>
+
+                    ⏰ Visitor Expired
+
+                </button>
+
+                }
+
+            </div>
+
+        </div>
+
+        }
+
+    </div>
+
+    }
+
+    }
+
+</div>

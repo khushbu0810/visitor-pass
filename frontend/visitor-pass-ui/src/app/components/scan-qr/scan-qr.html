@@ -1,0 +1,26 @@
+<div class="page-wrapper">
+    <div class="profile-card">
+        <div class="profile-header">
+            <div>
+                <h2>Scan Visitor QR</h2>
+                <p>
+                    Ask the visitor to present their QR Pass.
+                </p>
+            </div>
+        </div>
+        <div class="scanner-wrapper">
+            <video id="video" autoplay playsinline>
+            </video>
+        </div>
+        @if(error){
+        <div class="error-card">
+            {{error}}
+        </div>
+        }
+        <div class="resident-actions">
+            <button class="btn-secondary" (click)="stopScanner()">
+                Back
+            </button>
+        </div>
+    </div>
+</div>

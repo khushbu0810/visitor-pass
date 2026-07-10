@@ -1,0 +1,104 @@
+<div class="page-wrapper">
+    @if(isLoading){
+    <div class="loading-card">
+        Loading Visitor Pass...
+    </div>
+    }
+
+    @if(!isLoading && pass){
+    <div class="profile-card">
+        <div class="profile-header">
+            <div>
+                <h2>Visitor QR Pass</h2>
+                <p>
+                    Show this QR code at the society gate for visitor verification.
+                </p>
+            </div>
+            <span class="status-badge">
+                {{pass.status}}
+            </span>
+        </div>
+
+        <div class="profile-grid">
+            <div class="profile-item">
+                <label>Pass ID</label>
+                <span>{{pass.passId}}</span>
+            </div>
+
+            <div class="profile-item">
+                <label>Visitor ID</label>
+                <span>{{pass.visitorId}}</span>
+            </div>
+
+            <div class="profile-item">
+                <label>Resident ID</label>
+                <span>{{pass.residentId}}</span>
+            </div>
+
+            <div class="profile-item">
+                <label>Generated On</label>
+                <span>{{pass.generatedAt}}</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="action-card qr-card">
+        <h3>QR Code</h3>
+        <p>
+            Present this QR code to the security guard during visitor entry.
+        </p>
+        <div class="qr-wrapper">
+            @if(pass.qrImage){
+            <img class="qr-image" [src]="pass.qrImage" alt="Visitor QR Code">
+            }
+            @else{
+            <div class="qr-placeholder">
+                QR Code will appear here.
+            </div>
+            }
+        </div>
+        <div class="token-card glass-card">
+            <label>QR Token</label>
+            <span>{{pass.qrCode}}</span>
+        </div>
+
+        <div class="resident-actions">
+
+            <button class="btn-submit action-btn" (click)="downloadQRCode()">
+                Download QR
+            </button>
+
+            <button class="btn-danger action-btn" (click)="cancelPass()">
+                Cancel Pass
+            </button>
+
+        </div>
+
+        <div class="back-section">
+
+            <button class="btn-secondary" routerLink="/resident-profile">
+
+                ← Back to Profile
+
+            </button>
+
+        </div>
+    </div>
+    }
+
+    @if(!isLoading && !pass){
+    <div class="profile-card">
+        <div class="empty-state">
+            <h2>No Pass Found</h2>
+            <p>
+                No QR pass has been generated for this visitor.
+            </p>
+            <button class="btn-submit" routerLink="/resident-profile">
+                Back to Profile
+            </button>
+        </div>
+    </div>
+    }
+</div>

@@ -1,0 +1,265 @@
+:host {
+
+    display: block;
+}
+
+/*==========================================
+Navbar
+==========================================*/
+
+.navbar {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    height: 78px;
+
+    padding: 0 45px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    background: rgba(18, 20, 24, .90);
+
+    backdrop-filter: blur(20px);
+
+    border-bottom: 1px solid rgba(163, 230, 53, .12);
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, .35);
+}
+
+/*==========================================
+Logo
+==========================================*/
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.logo:hover {
+
+    transform: translateY(-2px);
+}
+
+.logo-icon {
+
+    width: 52px;
+
+    height: 52px;
+
+    border-radius: 16px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 1.6rem;
+
+    background: linear-gradient(135deg,
+            rgba(190, 242, 100, .18),
+            rgba(132, 204, 22, .12));
+
+    border: 1px solid rgba(163, 230, 53, .25);
+
+    box-shadow:
+        0 0 20px rgba(163, 230, 53, .12);
+}
+
+.logo-text {
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.logo-text h3 {
+
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 1.3rem;
+
+    font-weight: 700;
+
+    letter-spacing: .4px;
+}
+
+.logo-text small {
+
+    color: #9ca3af;
+
+    font-size: .78rem;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+/*==========================================
+Right Section
+==========================================*/
+
+.nav-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+}
+
+/*==========================================
+Dashboard / Profile Button
+==========================================*/
+
+.nav-btn {
+
+    padding: 12px 24px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    cursor: pointer;
+
+    color: #111;
+
+    font-size: .92rem;
+
+    font-weight: 700;
+
+    background: linear-gradient(135deg,
+            #bef264,
+            #84cc16);
+
+    box-shadow:
+        0 12px 28px rgba(132, 204, 22, .25);
+
+    transition: .3s;
+}
+
+.nav-btn:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 18px 36px rgba(132, 204, 22, .38);
+}
+
+/*==========================================
+Logout Button
+==========================================*/
+
+.logout-btn {
+
+    padding: 12px 24px;
+
+    border-radius: 14px;
+
+    border: none;
+
+    cursor: pointer;
+
+    color: white;
+
+    font-size: .92rem;
+
+    font-weight: 700;
+
+    background: linear-gradient(135deg,
+            #ef4444,
+            #dc2626);
+
+    box-shadow:
+        0 12px 28px rgba(239, 68, 68, .25);
+
+    transition: .3s;
+}
+
+.logout-btn:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 18px 36px rgba(239, 68, 68, .38);
+}
+
+.logout-btn:active,
+.nav-btn:active {
+
+    transform: scale(.97);
+}
+
+/*==========================================
+Responsive
+==========================================*/
+
+@media(max-width:768px) {
+
+    .navbar {
+
+        padding: 15px 20px;
+
+        height: auto;
+
+        flex-direction: column;
+
+        gap: 18px;
+    }
+
+    .nav-actions {
+
+        width: 100%;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+    }
+
+    .nav-btn,
+    .logout-btn {
+
+        flex: 1;
+
+        min-width: 150px;
+    }
+
+    .logo-text h3 {
+
+        font-size: 1.1rem;
+    }
+
+    .logo-text small {
+
+        font-size: .72rem;
+    }
+
+    .logo-icon {
+
+        width: 46px;
+
+        height: 46px;
+
+        font-size: 1.4rem;
+    }
+
+}

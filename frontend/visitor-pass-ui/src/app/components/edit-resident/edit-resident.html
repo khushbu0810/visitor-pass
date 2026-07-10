@@ -1,0 +1,51 @@
+<div class="page-wrapper">
+
+    <h2 class="page-title">Edit Resident Profile</h2>
+    <div class="form-card">
+
+        <div class="form-card-body">
+
+            <form [formGroup]="residentForm" (ngSubmit)="updateResident()" novalidate>
+
+                <div class="section-title">
+                    Personal Details
+                </div>
+
+                <div class="field">
+                    <label>Full Name</label>
+                    <input type="text" formControlName="fullName" placeholder="Full Name">
+                </div>
+
+                <div class="field">
+                    <label>Email</label>
+                    <input type="email" formControlName="email" placeholder="Email">
+                </div>
+
+                <div class="field">
+                    <label>Phone Number</label>
+                    <input type="text" formControlName="phoneNumber" placeholder="Phone Number">
+                </div>
+
+                <div class="field">
+                    <label>Flat Number</label>
+                    <input type="text" formControlName="flatNumber" placeholder="Flat Number">
+                </div>
+
+                <div class="field">
+                    <label>Tower</label>
+                    <input type="text" formControlName="tower" placeholder="Tower">
+                </div>
+
+                <div class="field">
+                    <button type="submit" class="btn-submit" [disabled]="residentForm.invalid">
+                        Update Profile
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

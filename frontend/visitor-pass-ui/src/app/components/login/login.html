@@ -1,0 +1,68 @@
+<div class="page-wrapper">
+    <div class="form-card">
+        <form class="login-form" #loginForm="ngForm" (ngSubmit)="login()">
+            <div class="form-group">
+                <label class="form-label">Email Address</label>
+                <input type="email" name="email" placeholder="you@example.com" [(ngModel)]="loginInfo.email" required
+                    email #emailField="ngModel">
+
+                @if (emailField.invalid && emailField.touched) {
+                <div class="error-text">
+
+                    @if (emailField.errors?.['required']) {
+                    <small>Email is required.</small>
+                    }
+
+                    @if (emailField.errors?.['email']) {
+                    <small>Enter a valid email.</small>
+                    }
+
+                </div>
+                }
+
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Password</label>
+
+                <input type="password" name="password" placeholder="••••••••" [(ngModel)]="loginInfo.password" required
+                    #passwordField="ngModel">
+
+                @if (passwordField.invalid && passwordField.touched) {
+                <div class="error-text">
+                    <small>Password is required.</small>
+                </div>
+                }
+
+            </div>
+
+            <button type="submit" class="btn-submit">
+                Sign In
+            </button>
+
+            <div class="google-divider">
+                <span>OR</span>
+            </div>
+
+            <div class="google-section">
+                <div class="google-card">
+                    <div id="googleBtn"></div>
+                </div>
+            </div>
+
+            <p class="login-link">
+                Don't have an account?
+                <a routerLink="/signup">Create Account</a>
+            </p>
+
+            @if(errorMessage){
+            <p class="error-message">
+                {{ errorMessage }}
+            </p>
+            }
+
+        </form>
+
+    </div>
+
+</div>
